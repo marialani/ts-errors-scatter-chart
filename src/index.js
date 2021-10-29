@@ -15,9 +15,9 @@ const App = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const url1 =
-        "https://raw.githubusercontent.com/guardian/support-frontend/jd-ts-error-csv/support-frontend/ts-error-history.csv";
-      const response = await fetch(url1);
+      const url =
+        "https://raw.githubusercontent.com/guardian/support-frontend/main/support-frontend/ts-error-history.csv";
+      const response = await fetch(url);
       const data = await response.text();
 
       const textToCsv = Papa.parse(data, {
