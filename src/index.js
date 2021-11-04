@@ -23,14 +23,12 @@ const App = () => {
       const textToCsv = Papa.parse(data, {
         skipEmptyLines: true,
       });
-      console.log(textToCsv);
 
       const finalData = textToCsv.data.map((arr, i) => [
         parseInt(arr[0]),
         parseInt(arr[1]),
       ]);
       setCsvData(finalData);
-      console.log({ finalData });
     }
     fetchData();
   }, []);
@@ -46,13 +44,9 @@ const App = () => {
       spacing: [10, 30, 10, 30],
     },
     title: {
-      text: "Support-Frontend Typescript Errors",
-    },
-    subtitle: {
-      text: "Optional subtitle with <a href='http://google.co.uk' target='_blank' rel='noopener noreferrer'>Link?</a>\n\r\r",
+      text: "SUPPORT-FRONTEND TYPESCRIPT ERRORS",
     },
     xAxis: {
-      // tickInterval: 1,
       labels: {
         enabled: true,
         formatter: function () {
@@ -63,7 +57,6 @@ const App = () => {
           fontSize: 11,
         },
       },
-      // startOnTick: true,
       endOnTick: true,
       showLastLabel: true,
     },
@@ -72,9 +65,6 @@ const App = () => {
         text: "NUMBER OF ERRORS",
         x: -10,
       },
-      // labels: {
-      //   format: "{value}",
-      // },
     },
     tooltip: {
       formatter: function () {
