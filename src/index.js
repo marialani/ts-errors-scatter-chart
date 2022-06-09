@@ -1,38 +1,15 @@
-import React, { useEffect, useState } from "react";
 import { render } from "react-dom";
 import Highcharts from "highcharts";
 import highchartsData from "highcharts/modules/data";
 import highchartsExporting from "highcharts/modules/exporting";
 import HighchartsReact from "highcharts-react-official";
-import Papa from "papaparse";
+import { data } from "./data";
 import "./index.css";
 
 highchartsData(Highcharts);
 highchartsExporting(Highcharts);
 
 const App = () => {
-  const [csvData, setCsvData] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const url =
-        "https://raw.githubusercontent.com/guardian/support-frontend/main/support-frontend/ts-error-history.csv";
-      const response = await fetch(url);
-      const data = await response.text();
-
-      const textToCsv = Papa.parse(data, {
-        skipEmptyLines: true,
-      });
-
-      const finalData = textToCsv.data.map((arr, i) => [
-        parseInt(arr[0]),
-        parseInt(arr[1]),
-      ]);
-      setCsvData(finalData);
-    }
-    fetchData();
-  }, []);
-
   const options = {
     chart: {
       type: "scatter",
@@ -88,14 +65,14 @@ const App = () => {
         type: "scatter",
       },
       {
-        data: csvData,
+        data,
       },
     ],
   };
 
   return (
     <div className={"container"}>
-      {csvData && <HighchartsReact highcharts={Highcharts} options={options} />}
+      <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
 };
